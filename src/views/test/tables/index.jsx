@@ -51,6 +51,20 @@ function Nav1() {
     {
       title: 'gender',
       dataIndex: 'gender'
+    },
+    {
+      width: 350,
+      dataIndex: 'action',
+      title: '操作',
+      align: 'center',
+      render: (text, record, index) => {
+        return (
+          <div>
+            <Button type="primary">编辑</Button>
+            <Button type="danger">删除</Button>
+          </div>
+        )
+      }
     }
   ]
   const advanceSearchForm = (
@@ -89,27 +103,46 @@ function Nav1() {
       </Form>
     </div>
   )
+
   const searchFrom = (
-    <div style={{ marginBottom: 16 }}>
-      <Form form={form} style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <Form.Item name="gender">
-          <Select style={{ width: 120, marginRight: 16 }} onChange={submit}>
-            <Option value="">all</Option>
-            <Option value="male">male</Option>
-            <Option value="female">female</Option>
-          </Select>
-        </Form.Item>
-        <Form.Item name="name">
-          <Input.Search
-            placeholder="enter name"
-            style={{ width: 240 }}
-            onSearch={submit}
-          />
-        </Form.Item>
-        <Button type="link" onClick={changeType}>
-          Advanced Search
+    <div
+      style={{
+        marginBottom: 16,
+        display: 'flex',
+        justifyContent: 'space-between'
+      }}
+    >
+      <div>
+        <Button type="primary" style={{ marginRight: '20px' }}>
+          新增
         </Button>
-      </Form>
+        <Button type="danger">批量删除</Button>
+      </div>
+      <div>
+        <Form layout="inline" form={form}>
+          <Form.Item name="gender">
+            <Select
+              placeholder="请选择"
+              style={{ width: 120, marginRight: 16 }}
+              onChange={submit}
+            >
+              <Option value="">all</Option>
+              <Option value="male">male</Option>
+              <Option value="female">female</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item name="name">
+            <Input.Search
+              placeholder="enter name"
+              style={{ width: 240 }}
+              onSearch={submit}
+            />
+          </Form.Item>
+          <Button type="link" onClick={changeType}>
+            Advanced Search
+          </Button>
+        </Form>
+      </div>
     </div>
   )
   return (

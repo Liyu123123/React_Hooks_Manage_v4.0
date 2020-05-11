@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { connect, useSelector, shallowEqual, useDispatch } from 'react-redux'
+import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import { setOpenkeys } from '@/store/action'
 import Modulecss from './index.module.scss'
 import { Menu } from 'antd'
@@ -9,11 +9,10 @@ import { UserOutlined } from '@ant-design/icons'
 const { SubMenu } = Menu
 function MenuComponent(props) {
   console.log('render')
+  const { RouteConfig } = props
   const authArr = useSelector((state) => state.auth, shallowEqual)
   const openKeys = useSelector((state) => state.Menu, shallowEqual)
   const dispatch = useDispatch()
-
-  const { RouteConfig } = props
   const { pathname } = useLocation()
   const [ownDefaultSelectedKeys, setOwnDefaultSelectedKeys] = useState([])
   useEffect(() => {
